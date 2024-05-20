@@ -3,8 +3,8 @@ version: "3.9"
 
 
 services:
-  postgres:
-    container_name: postgres
+  postgres_db:
+    container_name: postgres_db
     image: postgres:latest
     env_file:
       - .env
@@ -14,3 +14,23 @@ services:
       - "${PG_PORT}:${PG_PORT}"
     networks:
       - postgres-network
+
+
+  local_pgadmin:
+    image: elestio/pgadmin:latest
+    container_name: local_pgadmin
+    ports:
+      - "${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}"
+    env_file:
+      - .env
+    depends_on:
+      - postgres_db
+    networks:
+      - postgres-network
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin/
+
+
+networks:
+  postgres-network:
+    driver: bridge

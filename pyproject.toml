@@ -16,6 +16,8 @@ python = ">=3.12,<3.13"
 pydantic = "^2.6.3"
 sqlalchemy = "^2.0.28"
 pydantic-settings = "^2.2.1"
+psycopg2 = "^2.9.9"
+psycopg2-binary = "^2.9.9"
 
 
 [tool.poetry.group.dev.dependencies]

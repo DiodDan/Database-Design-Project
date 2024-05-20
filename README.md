@@ -205,7 +205,7 @@ This database is designed to support a variety of operations for an e-commerce p
 
 # Database Schema
 ![img.png](./assets/images/Schema.png)
-
+![postgres@localhost.png](./assets/images/postgres@localhost.png)
 # Entity Relationship Diagram
 ![img.png](./assets/images/ERD.png)
 
