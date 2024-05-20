@@ -6,7 +6,7 @@
 3. [Database Schema](#Database-Schema)
 4. [Entity Relationship Diagram](#Entity-Relationship-Diagram)
 5. [Database Normalization](#Database-Normalization)
-
+6. [Running the Database](#Running-the-Database)
 
 
 # Database Structure Summary
@@ -237,3 +237,13 @@ During the design of the database, we followed these steps:
 #### Ensure it meets 1NF and there are no partial dependencies, meaning every attribute is fully dependent on the primary key.
 ### 3NF:
 #### Ensure it meets 2NF and there are no transitive dependencies, meaning every non-prime attribute is directly dependent on the primary key.
+
+
+# Running the Database
+### To run the database you need to run postgres database on your local machine. You can do it by running the following command in the terminal:
+  ```sh
+    docker-compose up
+  ```
+### After that you can try it out using `db_test.py` just run it and it will create the database and fill it with some data.
+
+### If you want to check the database stats you can go on <link>http://localhost:54321 there will be pgadmin page login and password are `admin@de.com` and `admin` respectively. After that you will need to add server click on add then specify host as postgres_db, port as 5432, username as postgres, password as postgres. Then you can see the database and its tables by clicking on `your server` -> `databases` -> `public` -> `tables`.
