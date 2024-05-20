@@ -1,5 +1,5 @@
 # Database Design Documentation
-
+#### Created by Danila Prigulsky, Ivan Rudnev, Egor Silacov
 ## Table of Contents
 1. [Database Structure Summary](#Database-Structure-Summary)
 2. [Database Creation Description](#Database-Creation-Description)
@@ -10,7 +10,7 @@
 
 
 # Database Structure Summary
-The database consists of several tables, each representing a different entity. 
+Marketplace was chosen as the business for which the database is being designed. The database consists of several tables, each representing a different entity. 
 
 1. ### [Customers](#Customers): Stores information about the customers.
 
@@ -204,10 +204,36 @@ This database is designed to support a variety of operations for an e-commerce p
     ### Table `warehouse_items` contains information about items that are present in the warehouse. It is connected to `warehouses` and `items` tables by foreign keys `warehouse_id` and `item_id`. We made it a separate table because one warehouse can contain multiple items.
 
 # Database Schema
+### Full-fledged scheme of the database on which the working prototype was created in the future. 
 ![img.png](./assets/images/Schema.png)
 ![postgres@localhost.png](./assets/images/postgres@localhost.png)
 # Entity Relationship Diagram
+### This digram shows the relationship between entities using Chen's notation.
 ![img.png](./assets/images/ERD.png)
 
 # Database Normalization
-
+During the design of the database, we followed these steps:
+## 1. First Normal Form (1NF):
+### Atomic Value:
+#### Each cell in the table must contain only a single value, and that value must be atomic, i.e., it cannot be divided further.
+### Unique Column Names:
+#### Each column in a table must have a unique name. This ensures clarity and avoids ambiguity.
+### No Repeating Groups:
+#### No Repeating Groups: Each column should have a single value corresponding to each row. Avoid repeating groups or arrays in a single column.
+## 2. Second Normal Form (2NF):
+### Meets 1NF:
+#### The table must be in first normal form.
+### No Partial Dependencies:
+#### Each non-prime attribute (i.e., not part of any candidate key) must be fully functionally dependent on the entire primary key, not just part of it. This means that every attribute in the table must be functionally dependent on the primary key.
+## 3. Third Normal Form (3NF):
+###  Meets 2NF:
+#### The table must already be in second normal form.
+### No Transitive Dependencies:
+#### There should be no transitive dependencies. This means that no non-prime attribute should be dependent on another non-prime attribute. Every non-prime attribute must be directly dependent on the primary key.
+## In summary:
+### 1NF:
+#### Make sure every cell has a single value, columns have unique names, and avoid repeating groups.
+### 2NF:
+#### Ensure it meets 1NF and there are no partial dependencies, meaning every attribute is fully dependent on the primary key.
+### 3NF:
+#### Ensure it meets 2NF and there are no transitive dependencies, meaning every non-prime attribute is directly dependent on the primary key.
