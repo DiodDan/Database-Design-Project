@@ -42,7 +42,9 @@ class Customer(Base):
     created_at: datetime = Column("created_at", TIMESTAMP, default=utc_now)
     cart_price: float = Column("cart_price", FLOAT, default=0.0)
 
-    __str__ = lambda self: f"{"*" * 10}\n{self.name=}\n{self.surname=}\n{self.login=}\n{self.age=}\n{str(self.created_at)=}\n{"*" * 10}\n"
+    def __str__(self) -> str:
+        return f"{'*' * 10}\n{self.name=}\n{self.surname=}\n{self.login=}\n{self.age=}\n{str(self.created_at)=}\n{'*' * 10}\n"
+
 
 class Seller(Base):
     __tablename__: str = "sellers"
@@ -62,7 +64,9 @@ class Seller(Base):
     card_number: str = Column("card_number", String, nullable=False)
     total_sales: float = Column("total_sales", FLOAT, default=0.0)
 
-    __str__ = lambda self: f"{"*" * 10}\n{self.title=}\n{self.login=}\n{self.rate=}\n{str(self.created_at)=}\n{self.address=}\n{self.card_number=}\n{self.total_sales=}\n{"*" * 10}\n"
+    def __str__(self) -> str:
+        return f"{'*' * 10}\n{self.title=}\n{self.login=}\n{self.rate=}\n{str(self.created_at)=}\n{self.address=}\n{self.card_number=}\n{self.total_sales=}\n{'*' * 10}\n"
+
 
 class Address(Base):
     __tablename__: str = "addresses"
@@ -106,6 +110,9 @@ class Item(Base):
     cost: float = Column("cost", FLOAT, nullable=False)
     created_at: datetime = Column("created_at", TIMESTAMP, default=utc_now)
 
+
+    def __str__(self) -> str:
+        return f"{'*' * 10}\n{self.title=}\n{self.category=}\n{self.rate=}\n{self.description=}\n{self.seller_id=}\n{self.cost=}\n{str(self.created_at)=}\n{'*' * 10}\n"
 
 class CustomerItemCart(Base):
     __tablename__: str = "customer_item_cart"
