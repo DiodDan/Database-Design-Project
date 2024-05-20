@@ -1,0 +1,16 @@
+version: "3.9"
+
+
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    env_file:
+      - .env
+    volumes:
+      - ./db_root:/var/lib/postgresql/data
+    ports:
+      - "${PG_PORT}:${PG_PORT}"
+    networks:
+      - postgres-network

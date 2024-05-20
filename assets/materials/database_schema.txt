@@ -1,0 +1,120 @@
+Table customers {
+  id integer [primary key]
+  name varchar
+  surname varchar
+  login varchar
+  password varchar
+  age int
+  verified boolean
+  created_at timestamp
+  cart_price float
+}
+Ref: customers.id < addresses.customer_id
+Ref: customers.id < payment_methods.customer_id
+
+
+Table addresses {
+  id integer [primary key]
+  customer_id integer
+  address varchar
+}
+
+
+Table payment_methods {
+  customer_id integer [primary key]
+  card_number varchar [primary key]
+  cvc int
+  card_holder varchar
+  valid_until varchar
+}
+
+
+Table sellers {
+  id integer [primary key]
+  title varchar
+  login varchar
+  password varchar
+  rate float
+  created_at timestamp
+  address varchar
+  card_number varchar
+  total_sales float
+}
+
+
+Table orders {
+  id integer [primary key]
+  customer_id integer
+  delivery_address varchar
+  status enum ('processing', 'paid', 'delivery',
+  'delivered', 'finished', 'canceled')
+  total_cost float
+  created_at timestamp
+  comment text
+}
+Ref: customers.id < orders.customer_id
+
+
+Table items{
+  id integer [primary key]
+  title varchar
+  category enum
+  rate float
+  description text [note: 'Description of items']
+  seller_id integer
+  cost float
+  created_at timestamp
+}
+Ref: sellers.id < items.seller_id
+
+
+Table customer_item_cart{
+  customer_id integer [primary key]
+  item_id integer [primary key]
+  amount integer
+}
+Ref: customers.id < customer_item_cart.customer_id
+Ref: items.id < customer_item_cart.item_id
+
+
+Table customer_item_wish{
+  customer_id integer [primary key]
+  item_id integer [primary key]
+}
+Ref: customers.id < customer_item_wish.customer_id
+Ref: items.id < customer_item_wish.item_id
+
+
+Table rates{
+  customer_id integer [primary key]
+  item_id integer [primary key]
+  rate integer
+  body text [note: "Description about rate"]
+}
+Ref: customers.id < rates.customer_id
+Ref: items.id < rates.item_id
+
+
+Table order_item{
+  order_id integer [primary key]
+  item_id integer [primary key]
+  amount integer
+}
+Ref: orders.id < order_item.order_id
+Ref: items.id < order_item.item_id
+
+
+Table warehouses{
+  id integer [primary key]
+  title varchar
+  address varchar
+}
+
+
+Table warehouse_items{
+  warehouse_id integer  [primary key]
+  item_id integer [primary key]
+  amount integer
+}
+Ref: warehouses.id < warehouse_items.warehouse_id
+Ref: items.id < warehouse_items.item_id
